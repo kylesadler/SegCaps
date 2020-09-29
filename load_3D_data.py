@@ -22,12 +22,12 @@ import numpy as np
 from numpy.random import rand, shuffle
 import SimpleITK as sitk
 from sklearn.model_selection import train_test_split
-print('loading 3d ')
 from tqdm import tqdm
 
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+print('loading 3d ')
 plt.ioff()
 
 from keras.preprocessing.image import *
