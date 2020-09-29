@@ -19,9 +19,6 @@ import SimpleITK as sitk
 from time import gmtime, strftime
 time = strftime("%Y-%m-%d-%H:%M:%S", gmtime())
 
-from keras.utils import print_summary
-print('asdfasdf')
-
 from load_3D_data import load_data, split_data
 from model_helper import create_model
 
@@ -46,7 +43,7 @@ def main(args):
 
     # Create the model for training/testing/manipulation
     model_list = create_model(args=args, input_shape=net_input_shape)
-    print_summary(model=model_list[0], positions=[.38, .65, .75, 1.])
+    model_list[0].summary(positions=[.38, .65, .75, 1.])
 
     args.output_name = 'split-' + str(args.split_num) + '_batch-' + str(args.batch_size) + \
                        '_shuff-' + str(args.shuffle_data) + '_aug-' + str(args.aug_data) + \
