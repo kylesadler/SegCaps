@@ -17,6 +17,7 @@ from os.path import join, basename
 from os import mkdir
 from glob import glob
 import csv
+print('loading 3d ')
 from sklearn.model_selection import KFold
 import numpy as np
 from numpy.random import rand, shuffle
