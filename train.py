@@ -21,7 +21,7 @@ import numpy as np
 from keras.optimizers import Adam
 from keras import backend as K
 K.set_image_data_format('channels_last')
-from keras.utils.training_utils import multi_gpu_model
+from keras.utils import multi_gpu_model
 from keras.callbacks import ModelCheckpoint, CSVLogger, EarlyStopping, ReduceLROnPlateau, TensorBoard
 import tensorflow as tf
 
