@@ -25,7 +25,7 @@ class Length(layers.Layer):
 
     def call(self, inputs, **kwargs):
         if inputs.get_shape().ndims == 5:
-            assert inputs.get_shape()[-2].value == 1, 'Error: Must have num_capsules = 1 going into Length'
+            assert inputs.get_shape()[-2] == 1, 'Error: Must have num_capsules = 1 going into Length'
             inputs = K.squeeze(inputs, axis=-2)
         return K.expand_dims(tf.norm(inputs, axis=-1), axis=-1)
 
@@ -54,7 +54,7 @@ class Mask(layers.Layer):
             input, mask = inputs
             _, hei, wid, _, _ = input.get_shape()
             if self.resize_masks:
-                mask = tf.image.resize_bicubic(mask, (hei.value, wid.value))
+                mask = tf.image.resize_bicubic(mask, (hei, wid))
             mask = K.expand_dims(mask, -1)
             if input.get_shape().ndims == 3:
                 masked = K.batch_flatten(mask * input)
@@ -137,12 +137,12 @@ class ConvCapsuleLayer(layers.Layer):
 
         votes = K.reshape(conv, [input_shape[1], input_shape[0], votes_shape[1], votes_shape[2],
                                  self.num_capsule, self.num_atoms])
-        votes.set_shape((None, self.input_num_capsule, conv_height.value, conv_width.value,
+        votes.set_shape((None, self.input_num_capsule, conv_height, conv_width,
                          self.num_capsule, self.num_atoms))
 
         logit_shape = K.stack([
             input_shape[1], input_shape[0], votes_shape[1], votes_shape[2], self.num_capsule])
-        biases_replicated = K.tile(self.b, [conv_height.value, conv_width.value, 1, 1])
+        biases_replicated = K.tile(self.b, [conv_height, conv_width, 1, 1])
 
         activations = update_routing(
             votes=votes,
@@ -259,7 +259,7 @@ class DeconvCapsuleLayer(layers.Layer):
 
         votes = K.reshape(outputs, [input_shape[1], input_shape[0], votes_shape[1], votes_shape[2],
                                  self.num_capsule, self.num_atoms])
-        votes.set_shape((None, self.input_num_capsule, conv_height.value, conv_width.value,
+        votes.set_shape((None, self.input_num_capsule, conv_height, conv_width,
                          self.num_capsule, self.num_atoms))
 
         logit_shape = K.stack([
