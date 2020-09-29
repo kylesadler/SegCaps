@@ -324,7 +324,8 @@ def update_routing(votes, biases, logit_shape, num_dims, input_dim, output_dim,
         # route: [batch, input_dim, output_dim, ...]
         route = tf.nn.softmax(logits, axis=-1)
         print(votes_trans.dtype)
-        route = tf.cast(votes_trans, tf.float32)
+        votes_trans = tf.cast(votes_trans, tf.float32)
+        route = tf.cast(route, tf.float32)
         print(votes_trans.dtype)
         print(route.dtype)
 
