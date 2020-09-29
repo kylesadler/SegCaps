@@ -8,8 +8,8 @@ If you have any questions, please email me at lalonde@knights.ucf.edu.
 This file contains the network definitions for the various capsule network architectures.
 '''
 
-from keras import layers, models
-from keras import backend as K
+import tensorflow.keras import layers, models
+import tensorflow.keras import backend as K
 K.set_image_data_format('channels_last')
 
 from capsule_layers import ConvCapsuleLayer, DeconvCapsuleLayer, Mask, Length

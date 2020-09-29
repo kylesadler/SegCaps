@@ -29,7 +29,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 plt.ioff()
 
-from keras.preprocessing.image import *
+from tensorflow.keras.preprocessing.image import *
 
 from custom_data_aug import elastic_transform, salt_pepper_noise
 
