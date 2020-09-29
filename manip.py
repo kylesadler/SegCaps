@@ -21,7 +21,7 @@ from PIL import Image
 import numpy as np
 import math
 
-import tensorflow.keras import backend as K
+from tensorflow.keras import backend as K
 K.set_image_data_format('channels_last')
 from tensorflow.keras.utils import print_summary
 

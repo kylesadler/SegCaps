@@ -25,7 +25,7 @@ import scipy.ndimage.morphology
 from skimage import measure, filters
 from metrics import dc, jc, assd
 
-import tensorflow.keras import backend as K
+from tensorflow.keras import backend as K
 K.set_image_data_format('channels_last')
 from tensorflow.keras.utils import print_summary
 

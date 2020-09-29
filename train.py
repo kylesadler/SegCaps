@@ -19,7 +19,7 @@ from os.path import join
 import numpy as np
 
 from tensorflow.keras.optimizers import Adam
-import tensorflow.keras import backend as K
+from tensorflow.keras import backend as K
 K.set_image_data_format('channels_last')
 from tensorflow.keras.utils import multi_gpu_model
 from tensorflow.keras.callbacks import ModelCheckpoint, CSVLogger, EarlyStopping, ReduceLROnPlateau, TensorBoard
