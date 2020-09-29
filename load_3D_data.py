@@ -27,10 +27,10 @@ from tqdm import tqdm
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-print('loading 3d ')
 plt.ioff()
 
 from keras.preprocessing.image import *
+print('loading 3d ')
 
 from custom_data_aug import elastic_transform, salt_pepper_noise
 
