@@ -344,7 +344,7 @@ def update_routing(votes, biases, logit_shape, num_dims, input_dim, output_dim,
       loop_vars=[i, logits, activations],
       swap_memory=True)
 
-    return K.cast(activations.read(num_routing - 1), dtype='float32')
+    return K.cast(activations.read(num_routing - 1), dtype='float16')
 
 
 def _squash(input_tensor):
