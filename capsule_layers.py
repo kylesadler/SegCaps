@@ -14,6 +14,9 @@ from tensorflow.keras import initializers, layers
 from keras.utils.conv_utils import conv_output_length, deconv_length
 import numpy as np
 
+tf.keras.backend.set_floatx('float16')
+
+
 class Length(layers.Layer):
     def __init__(self, num_classes, seg=True, **kwargs):
         super(Length, self).__init__(**kwargs)
