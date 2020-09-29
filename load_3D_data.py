@@ -142,7 +142,7 @@ def convert_data_to_numpy(root_path, img_name, no_masks=False, overwrite=False):
         itk_img = sitk.ReadImage(join(img_path, img_name))
         img = sitk.GetArrayFromImage(itk_img)
         img = np.rollaxis(img, 0, 3)
-        img = img.astype(np.float32)
+        img = img.astype(np.float16)
         img[img > ct_max] = ct_max
         img[img < ct_min] = ct_min
         img += -ct_min
@@ -298,7 +298,7 @@ def threadsafe_generator(f):
 def generate_train_batches(root_path, train_list, net_input_shape, net, batchSize=1, numSlices=1, subSampAmt=-1,
                            stride=1, downSampAmt=1, shuff=1, aug_data=1):
     # Create placeholders for training
-    img_batch = np.zeros((np.concatenate(((batchSize,), net_input_shape))), dtype=np.float32)
+    img_batch = np.zeros((np.concatenate(((batchSize,), net_input_shape))), dtype=np.float16)
     mask_batch = np.zeros((np.concatenate(((batchSize,), net_input_shape))), dtype=np.uint8)
 
     while True:
@@ -377,7 +377,7 @@ def generate_train_batches(root_path, train_list, net_input_shape, net, batchSiz
 def generate_val_batches(root_path, val_list, net_input_shape, net, batchSize=1, numSlices=1, subSampAmt=-1,
                          stride=1, downSampAmt=1, shuff=1):
     # Create placeholders for validation
-    img_batch = np.zeros((np.concatenate(((batchSize,), net_input_shape))), dtype=np.float32)
+    img_batch = np.zeros((np.concatenate(((batchSize,), net_input_shape))), dtype=np.float16)
     mask_batch = np.zeros((np.concatenate(((batchSize,), net_input_shape))), dtype=np.uint8)
 
     while True:
@@ -442,7 +442,7 @@ def generate_val_batches(root_path, val_list, net_input_shape, net, batchSize=1,
 def generate_test_batches(root_path, test_list, net_input_shape, batchSize=1, numSlices=1, subSampAmt=0,
                           stride=1, downSampAmt=1):
     # Create placeholders for testing
-    img_batch = np.zeros((np.concatenate(((batchSize,), net_input_shape))), dtype=np.float32)
+    img_batch = np.zeros((np.concatenate(((batchSize,), net_input_shape))), dtype=np.float16)
     count = 0
     for i, scan_name in enumerate(test_list):
         try:

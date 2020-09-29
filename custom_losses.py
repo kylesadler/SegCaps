@@ -91,8 +91,8 @@ def dice_hard(y_true, y_pred, threshold=0.5, axis=[1,2,3], smooth=1e-5):
     -----------
     - `Wiki-Dice <https://en.wikipedia.org/wiki/Sørensen–Dice_coefficient>`_
     """
-    y_pred = tf.cast(y_pred > threshold, dtype=tf.float32)
-    y_true = tf.cast(y_true > threshold, dtype=tf.float32)
+    y_pred = tf.cast(y_pred > threshold, dtype=tf.float16)
+    y_true = tf.cast(y_true > threshold, dtype=tf.float16)
     inse = tf.reduce_sum(tf.multiply(y_pred, y_true), axis=axis)
     l = tf.reduce_sum(y_pred, axis=axis)
     r = tf.reduce_sum(y_true, axis=axis)
@@ -131,8 +131,8 @@ def weighted_binary_crossentropy_loss(pos_weight):
             output = tf.clip_by_value(output, _epsilon, 1 - _epsilon)
             output = tf.math.log(output / (1 - output))
 
-        target = tf.cast(target, tf.float32)
-        output = tf.cast(output, tf.float32)
+        target = tf.cast(target, tf.float16)
+        output = tf.cast(output, tf.float16)
 
         return tf.nn.weighted_cross_entropy_with_logits(labels=target,
                                                        logits=output,
@@ -164,9 +164,9 @@ def margin_loss(margin=0.4, downweight=0.5, pos_weight=1.0):
         """
         logits = raw_logits - 0.5
         positive_cost = pos_weight * labels * tf.cast(tf.less(logits, margin),
-                                       tf.float32) * tf.pow(logits - margin, 2)
+                                       tf.float16) * tf.pow(logits - margin, 2)
         negative_cost = (1 - labels) * tf.cast(
-          tf.greater(logits, -margin), tf.float32) * tf.pow(logits + margin, 2)
+          tf.greater(logits, -margin), tf.float16) * tf.pow(logits + margin, 2)
         return 0.5 * positive_cost + downweight * 0.5 * negative_cost
 
     return _margin_loss

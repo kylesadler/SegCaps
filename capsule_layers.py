@@ -334,7 +334,7 @@ def update_routing(votes, biases, logit_shape, num_dims, input_dim, output_dim,
         return (i + 1, logits, activations)
 
     activations = tf.TensorArray(
-      dtype=tf.float32, size=num_routing, clear_after_read=False)
+      dtype=tf.float16, size=num_routing, clear_after_read=False)
     logits = tf.fill(logit_shape, 0.0)
 
     i = tf.constant(0, dtype=tf.int32)
@@ -344,7 +344,7 @@ def update_routing(votes, biases, logit_shape, num_dims, input_dim, output_dim,
       loop_vars=[i, logits, activations],
       swap_memory=True)
 
-    return K.cast(activations.read(num_routing - 1), dtype='float32')
+    return K.cast(activations.read(num_routing - 1), dtype='float16')
 
 
 def _squash(input_tensor):

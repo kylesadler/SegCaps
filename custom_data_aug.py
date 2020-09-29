@@ -21,10 +21,10 @@ def elastic_transform(image, alpha=2000, sigma=40, alpha_affine=40, random_state
     shape_size = shape[:2]
 
     # Random affine
-    center_square = np.float32(shape_size) // 2
+    center_square = np.float16(shape_size) // 2
     square_size = min(shape_size) // 3
-    pts1 = np.float32([center_square + square_size, [center_square[0]+square_size, center_square[1]-square_size], center_square - square_size])
-    pts2 = pts1 + random_state.uniform(-alpha_affine, alpha_affine, size=pts1.shape).astype(np.float32)
+    pts1 = np.float16([center_square + square_size, [center_square[0]+square_size, center_square[1]-square_size], center_square - square_size])
+    pts2 = pts1 + random_state.uniform(-alpha_affine, alpha_affine, size=pts1.shape).astype(np.float16)
     M = cv2.getAffineTransform(pts1, pts2)
     for i in range(shape[2]):
         image[:,:,i] = cv2.warpAffine(image[:,:,i], M, shape_size[::-1], borderMode=cv2.BORDER_REFLECT_101)
