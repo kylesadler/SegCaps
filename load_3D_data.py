@@ -30,7 +30,6 @@ import matplotlib.pyplot as plt
 plt.ioff()
 
 from keras.preprocessing.image import *
-print('loading 3d ')
 
 from custom_data_aug import elastic_transform, salt_pepper_noise
 
@@ -38,11 +37,11 @@ debug = 0
 
 def load_data(root, split):
     # Load the training and testing lists
-    with open(join(root, 'split_lists', 'train_split_' + str(split) + '.csv'), 'rb') as f:
+    with open(join(root, 'split_lists', 'train_split_' + str(split) + '.csv'), 'r') as f:
         reader = csv.reader(f)
         training_list = list(reader)
 
-    with open(join(root, 'split_lists', 'test_split_' + str(split) + '.csv'), 'rb') as f:
+    with open(join(root, 'split_lists', 'test_split_' + str(split) + '.csv'), 'r') as f:
         reader = csv.reader(f)
         testing_list = list(reader)
 
@@ -103,11 +102,11 @@ def split_data(root_path, num_splits=4):
     kf = KFold(n_splits=num_splits)
     n = 0
     for train_index, test_index in kf.split(mask_list):
-        with open(join(outdir,'train_split_' + str(n) + '.csv'), 'wb') as csvfile:
+        with open(join(outdir,'train_split_' + str(n) + '.csv'), 'w') as csvfile:
             writer = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
             for i in train_index:
                 writer.writerow([basename(mask_list[i])])
-        with open(join(outdir,'test_split_' + str(n) + '.csv'), 'wb') as csvfile:
+        with open(join(outdir,'test_split_' + str(n) + '.csv'), 'w') as csvfile:
             writer = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
             for i in test_index:
                 writer.writerow([basename(mask_list[i])])

@@ -19,11 +19,8 @@ import SimpleITK as sitk
 from time import gmtime, strftime
 time = strftime("%Y-%m-%d-%H:%M:%S", gmtime())
 
-print('1')
 from load_3D_data import load_data, split_data
-print('2')
 from model_helper import create_model
-print('3')
 
 
 def main(args):

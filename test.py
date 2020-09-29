@@ -111,7 +111,7 @@ def test(args, test_list, model_list, net_input_shape):
     # Testing the network
     print('Testing... This will take some time...')
 
-    with open(join(output_dir, args.save_prefix + outfile + 'scores.csv'), 'wb') as csvfile:
+    with open(join(output_dir, args.save_prefix + outfile + 'scores.csv'), 'w') as csvfile:
         writer = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
 
         row = ['Scan Name']
