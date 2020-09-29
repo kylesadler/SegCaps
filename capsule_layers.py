@@ -317,8 +317,10 @@ def update_routing(votes, biases, logit_shape, num_dims, input_dim, output_dim,
         raise NotImplementedError('Not implemented')
 
     votes_trans = tf.cast(tf.transpose(votes, votes_t_shape), tf.float32)
-    biases = tf.cast(biases, tf.float32)
     _, _, _, height, width, caps = votes_trans.get_shape()
+
+    biases = tf.cast(biases, tf.float32)
+    votes = tf.cast(votes, tf.float32)
 
     def _body(i, logits, activations):
         """Routing while loop."""
