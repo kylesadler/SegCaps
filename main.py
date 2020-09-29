@@ -16,6 +16,7 @@ from os import makedirs
 from os import environ
 import argparse
 import SimpleITK as sitk
+print('asdfasdf')
 from time import gmtime, strftime
 time = strftime("%Y-%m-%d-%H:%M:%S", gmtime())
 
@@ -30,7 +31,7 @@ def main(args):
     assert (args.train or args.test or args.manip), 'Cannot have train, test, and manip all set to 0, Nothing to do.'
 
     print('here')
-    
+
     # Load the training, validation, and testing data
     try:
         train_list, val_list, test_list = load_data(args.data_root_dir, args.split_num)
