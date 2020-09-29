@@ -19,8 +19,8 @@ import SimpleITK as sitk
 from time import gmtime, strftime
 time = strftime("%Y-%m-%d-%H:%M:%S", gmtime())
 
-print('asdfasdf')
 from keras.utils import print_summary
+print('asdfasdf')
 
 from load_3D_data import load_data, split_data
 from model_helper import create_model
