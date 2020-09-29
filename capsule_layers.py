@@ -334,7 +334,7 @@ def update_routing(votes, biases, logit_shape, num_dims, input_dim, output_dim,
         return (i + 1, logits, activations)
 
     activations = tf.TensorArray(
-      dtype=tf.float16, size=num_routing, clear_after_read=False)
+      dtype=tf.float32, size=num_routing, clear_after_read=False)
     logits = tf.fill(logit_shape, 0.0)
 
     i = tf.constant(0, dtype=tf.int32)
