@@ -11,7 +11,7 @@ This file contains the definitions of the various capsule layers and dynamic rou
 import tensorflow.keras.backend as K
 import tensorflow as tf
 from tensorflow.keras import initializers, layers
-from tensorflow.keras.utils.conv_utils import conv_output_length, deconv_length
+from keras.utils.conv_utils import conv_output_length, deconv_length
 import numpy as np
 
 class Length(layers.Layer):
