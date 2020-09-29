@@ -16,10 +16,10 @@ from os import makedirs
 from os import environ
 import argparse
 import SimpleITK as sitk
-print('asdfasdf')
 from time import gmtime, strftime
 time = strftime("%Y-%m-%d-%H:%M:%S", gmtime())
 
+print('asdfasdf')
 from keras.utils import print_summary
 
 from load_3D_data import load_data, split_data
