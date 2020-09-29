@@ -20,9 +20,9 @@ import csv
 from sklearn.model_selection import KFold
 import numpy as np
 from numpy.random import rand, shuffle
-print('loading 3d ')
 import SimpleITK as sitk
 from sklearn.model_selection import train_test_split
+print('loading 3d ')
 from tqdm import tqdm
 
 import matplotlib
